@@ -1,8 +1,14 @@
 <script setup>
 import { computed, onMounted } from 'vue'
 import { useConfigStore } from '@/stores/configStore'
+import { useRouter } from "vue-router"
 
 const configStore = useConfigStore()
+const router = useRouter()
+
+const goToBookList = () => {
+  router.push("/")
+}
 
 // 使用computed保持响应式
 const writingConfig = computed({
@@ -33,6 +39,12 @@ onMounted(() => {
 <template>
   <div class="settings-page">
     <div class="header">
+      <div @click="goToBookList" class="back-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      </div>
       <h1>模型设置</h1>
     </div>
 
@@ -165,5 +177,25 @@ input:focus {
 
 .save-btn:hover {
   background: #333;
+}
+
+.back-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.back-icon:hover {
+  background-color: #f0f0f0;
+}
+
+.back-icon svg {
+  width: 20px;
+  height: 20px;
 }
 </style>
